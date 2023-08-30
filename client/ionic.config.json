@@ -1,0 +1,8 @@
+{
+  "name": "Snap Issue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "8ec1c179"
+}
