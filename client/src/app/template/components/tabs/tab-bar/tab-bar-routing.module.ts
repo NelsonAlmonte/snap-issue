@@ -11,7 +11,9 @@ const routes: Routes = [
       {
         path: 'map',
         loadChildren: () =>
-          import('../tab-map/tab-map.module').then((m) => m.TabMapPageModule),
+          import('../../../../map/pages/map/map.module').then(
+            (m) => m.MapPageModule
+          ),
       },
       {
         path: 'camera',

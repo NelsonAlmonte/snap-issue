@@ -1,4 +1,10 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+} from '@nestjs/common';
 import { IssueService } from './issue.service';
 import { Issue, Prisma } from '@prisma/client';
 import { writeFileSync } from 'fs';
@@ -7,6 +13,11 @@ import { generate } from 'randomstring';
 @Controller('issue')
 export class IssueController {
   constructor(private issueService: IssueService) {}
+
+  @Get()
+  async issues(): Promise<Issue[]> {
+    return await this.issueService.getIssues();
+  }
 
   @Post()
   async create(

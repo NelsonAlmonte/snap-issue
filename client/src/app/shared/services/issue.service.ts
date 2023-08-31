@@ -24,6 +24,12 @@ export class IssueService {
     return this.issues$.getValue();
   }
 
+  fetchIssues() {
+    return this.http
+      .get<Issue[]>(`http://localhost:3000/issue`)
+      .pipe(tap((issues) => this.issues$.next(issues)));
+  }
+
   createIssue(issue: CreateIssueDto) {
     return this.http.post<Issue>(`http://localhost:3000/issue`, issue).pipe(
       tap((createdIssue) => {

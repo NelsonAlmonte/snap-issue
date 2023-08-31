@@ -6,6 +6,10 @@ import { PrismaService } from 'src/prisma.service';
 export class IssueService {
   constructor(private prisma: PrismaService) {}
 
+  async getIssues(): Promise<Issue[]> {
+    return this.prisma.issue.findMany();
+  }
+
   async createIssue(issue: Prisma.IssueCreateInput): Promise<Issue> {
     return this.prisma.issue.create({
       data: issue,
