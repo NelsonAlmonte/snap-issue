@@ -29,8 +29,7 @@ export class CaptureModalComponent implements OnInit {
     const coordinates = await this.getCurrentLocation();
     const issue: CreateIssueDto = {
       categoryId: this.category,
-      image:
-        'https://c4.wallpaperflare.com/wallpaper/285/172/9/sunset-8k-forest-4k-wallpaper-preview.jpg',
+      image: this.image,
       latitude: coordinates.latitude.toString(),
       longitude: coordinates.longitude.toString(),
       reporterId: 1,
