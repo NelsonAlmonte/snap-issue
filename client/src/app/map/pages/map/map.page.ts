@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as L from 'leaflet';
 import { IssueService } from 'src/app/shared/services/issue.service';
+import * as L from 'leaflet';
+import 'leaflet.markercluster';
 
 @Component({
   selector: 'app-map',
@@ -8,13 +9,14 @@ import { IssueService } from 'src/app/shared/services/issue.service';
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage implements OnInit {
-  issues: any[] = [];
-  map: any;
+  map!: L.Map;
 
   constructor(private issueService: IssueService) {}
 
   ngOnInit() {
+    this.issueService.fetchIssues().subscribe();
     this.buildMap();
+    this.placeMarkers();
   }
 
   buildMap(): void {
@@ -24,14 +26,18 @@ export class MapPage implements OnInit {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
     map.locate({ setView: true, maxZoom: 18 });
+    L.Icon.Default.imagePath = 'assets/img/leaflet/';
     this.map = map;
   }
 
   placeMarkers() {
-    this.issueService.fetchIssues().subscribe((issues) => {
-      const markers = L.markerClusterGroup({ maxClusterRadius: 200 });
+    this.issueService.issues$.asObservable().subscribe((issues) => {
+      const markers = L.markerClusterGroup();
       for (const issue of issues) {
-        const marker = this.addIssueMarker(issue);
+        const marker = L.marker([
+          Number(issue.latitude),
+          Number(issue.longitude),
+        ]);
         markers.addLayer(marker);
       }
       this.map.addLayer(markers);
