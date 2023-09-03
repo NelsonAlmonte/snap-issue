@@ -2,16 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap } from 'rxjs';
 import { CreateIssueDto } from '../dto/create-issue.dto';
+import { environment } from 'src/environments/environment';
+import { Issue } from '../interfaces/issue.interface';
 
-interface Issue {
-  id: number;
-  categoryId: number;
-  image: string;
-  latitude: string;
-  longitude: string;
-  created_at: string | null;
-  reporterId: number;
-}
 @Injectable({
   providedIn: 'root',
 })
@@ -26,12 +19,12 @@ export class IssueService {
 
   fetchIssues() {
     return this.http
-      .get<Issue[]>(`http://localhost:3000/issue`)
+      .get<Issue[]>(`${environment.apiUrl}issue`)
       .pipe(tap((issues) => this.issues$.next(issues)));
   }
 
   createIssue(issue: CreateIssueDto) {
-    return this.http.post<Issue>(`http://localhost:3000/issue`, issue).pipe(
+    return this.http.post<Issue>(`${environment.apiUrl}issue`, issue).pipe(
       tap((createdIssue) => {
         const currentIssues = this.getIssues();
         currentIssues.push(createdIssue);
