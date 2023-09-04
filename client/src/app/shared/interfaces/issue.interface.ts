@@ -1,3 +1,5 @@
+import { Category } from './category.interface';
+
 export interface Issue {
   id: number;
   categoryId: number;
@@ -6,4 +8,5 @@ export interface Issue {
   longitude: string;
   created_at: string | null;
   reporterId: number;
+  category: Category;
 }

@@ -7,7 +7,7 @@ export class IssueService {
   constructor(private prisma: PrismaService) {}
 
   async getIssues(): Promise<Issue[]> {
-    return this.prisma.issue.findMany();
+    return this.prisma.issue.findMany({ include: { category: true } });
   }
 
   async createIssue(issue: Prisma.IssueCreateInput): Promise<Issue> {

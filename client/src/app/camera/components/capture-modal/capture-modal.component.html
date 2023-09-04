@@ -12,13 +12,16 @@
   <ion-img [src]="image"></ion-img>
   <h2>Tipo de incidencia</h2>
   <ion-radio-group>
-    <ion-radio (click)="category = 1" value="1">Dogs</ion-radio><br />
-    <ion-radio (click)="category = 2" value="2">Cats</ion-radio><br />
-    <ion-radio (click)="category = 3" value="3">Turtles</ion-radio><br />
-    <ion-radio (click)="category = 4" value="4">Fish</ion-radio><br />
+    <ion-item *ngFor="let category of categories$ | async">
+      <ion-radio
+        (click)="selectedCategory = category.id"
+        [value]="category.id"
+        >{{ category.name }}</ion-radio
+      >
+    </ion-item>
   </ion-radio-group>
   <ion-button
-    [disabled]="category === 0"
+    [disabled]="selectedCategory === 0"
     (click)="confirm()"
     expand="block"
     fill="clear"
