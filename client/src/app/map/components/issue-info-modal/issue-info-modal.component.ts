@@ -10,13 +10,11 @@ import { environment } from 'src/environments/environment';
 })
 export class IssueInfoModalComponent implements OnInit {
   @Input() issue!: Issue;
+  issuesImagePath: string = environment.issuesImagesPath;
 
   constructor(private modalCtrl: ModalController) {}
 
-  ngOnInit() {
-    console.log(this.issue);
-    this.issue.image = environment.issuesImagesPath + this.issue.image;
-  }
+  ngOnInit() {}
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
