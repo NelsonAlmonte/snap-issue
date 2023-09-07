@@ -6,6 +6,8 @@ import { IssueModule } from './issue/issue.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CategoryModule } from './category/category.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { CategoryModule } from './category/category.module';
       renderPath: '/uploads',
     }),
     CategoryModule,
+    AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

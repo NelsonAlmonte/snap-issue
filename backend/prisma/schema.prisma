@@ -19,7 +19,7 @@ model User {
   username       String  @unique
   password       String
   email          String  @unique
-  image          String
+  image          String?
   isProfileSetup Boolean @default(false)
   issues         Issue[]
 }
