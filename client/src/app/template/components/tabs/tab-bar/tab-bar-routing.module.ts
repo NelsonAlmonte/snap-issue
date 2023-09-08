@@ -36,11 +36,6 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '',
-    redirectTo: '/tabs/camera',
-    pathMatch: 'full',
-  },
 ];
 
 @NgModule({
