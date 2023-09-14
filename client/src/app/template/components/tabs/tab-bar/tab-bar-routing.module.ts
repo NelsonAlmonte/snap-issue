@@ -5,20 +5,18 @@ import { TabBarPage } from './tab-bar.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabBarPage,
     children: [
       {
         path: 'map',
         loadChildren: () =>
-          import('../../../../map/pages/map/map.module').then(
-            (m) => m.MapPageModule
-          ),
+          import('@map/pages/map/map.module').then((m) => m.MapPageModule),
       },
       {
         path: 'camera',
         loadChildren: () =>
-          import('../../../../camera/pages/capture/capture.module').then(
+          import('@camera/pages/capture/capture.module').then(
             (m) => m.CapturePageModule
           ),
       },

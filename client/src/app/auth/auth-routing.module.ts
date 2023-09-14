@@ -8,26 +8,28 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () =>
-          import('./pages/login/login.module').then((m) => m.LoginPageModule),
+          import('@auth/pages/login/login.module').then(
+            (m) => m.LoginPageModule
+          ),
       },
       {
         path: 'signup',
         loadChildren: () =>
-          import('./pages/signup/signup.module').then(
+          import('@auth/pages/signup/signup.module').then(
             (m) => m.SignupPageModule
           ),
       },
       {
         path: '',
-        loadChildren: () =>
-          import('./pages/login/login.module').then((m) => m.LoginPageModule),
+        redirectTo: '/auth/login',
+        pathMatch: 'full',
       },
-      // {
-      //   path: '',
-      //   redirectTo: '/auth/login',
-      //   pathMatch: 'full',
-      // },
     ],
+  },
+  {
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full',
   },
 ];
 

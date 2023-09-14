@@ -15,15 +15,16 @@ export class AuthService {
     const user = await this.userService.getUser(username);
     const match = await bcrypt.compare(password, user.password);
     if (match) {
-      const { password, ...result } = user;
-      return result;
+      return this._stripPassword(user);
     }
     return null;
   }
 
   async login(user: User) {
     const payload = { username: user.username, sub: user.id };
+    const loggedUser = await this.userService.getUser(user.username);
     return {
+      user: this._stripPassword(loggedUser),
       access_token: this.jwtService.sign(payload),
     };
   }
@@ -32,6 +33,12 @@ export class AuthService {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
-    return this.userService.createUser(user);
+    const createdUser = await this.userService.createUser(user);
+    return this._stripPassword(createdUser);
+  }
+
+  private _stripPassword(user: User) {
+    const { password, ...result } = user;
+    return result;
   }
 }

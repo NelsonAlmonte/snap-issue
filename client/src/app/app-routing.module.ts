@@ -3,15 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'tabs',
-    loadChildren: () =>
-      import('./template/components/tabs/tab-bar/tab-bar.module').then(
-        (m) => m.TabBarPageModule
-      ),
+    path: '',
+    loadChildren: () => import('@auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: '',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    path: 'tabs',
+    loadChildren: () =>
+      import('@template/components/tabs/tab-bar/tab-bar.module').then(
+        (m) => m.TabBarPageModule
+      ),
   },
 ];
 @NgModule({

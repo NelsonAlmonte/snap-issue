@@ -3,6 +3,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@camera/*": ["src/app/camera/*"],
+      "@map/*": ["src/app/map/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@auth/*": ["src/app/auth/*"],
+      "@template/*": ["src/app/template/*"],
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

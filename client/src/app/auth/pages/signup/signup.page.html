@@ -10,4 +10,50 @@
       <ion-title size="large">signup</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div>
+    <ion-input
+      label="Nombre"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Nombre"
+      [(ngModel)]="name"
+    ></ion-input>
+    <br />
+    <ion-input
+      label="Apellido"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Apellido"
+      [(ngModel)]="last"
+    ></ion-input>
+    <br />
+    <ion-input
+      label="Correo"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Correo"
+      [(ngModel)]="email"
+    ></ion-input>
+    <br />
+    <ion-input
+      label="Usuario"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Usuario"
+      [(ngModel)]="username"
+    ></ion-input>
+    <br />
+    <ion-input
+      label="Contraseña"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Contraseña"
+      [(ngModel)]="password"
+    ></ion-input>
+    <br />
+    <ion-button (click)="signup()" expand="block" fill="clear" shape="round">
+      Signup
+    </ion-button>
+  </div>
 </ion-content>
