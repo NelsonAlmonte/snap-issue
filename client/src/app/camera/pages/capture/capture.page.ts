@@ -20,8 +20,14 @@ export class CapturePage implements OnInit {
 
   constructor(private modalController: ModalController) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter() {
     this.initCamera();
+  }
+
+  ionViewDidLeave() {
+    CameraPreview.stop();
   }
 
   async initCamera() {
